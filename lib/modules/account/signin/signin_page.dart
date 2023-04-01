@@ -1,4 +1,6 @@
+import 'package:artesanias_app/widgets/material_input.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
@@ -36,13 +38,13 @@ class SignInPage extends StatelessWidget {
               ),
               const Padding(
                 padding: EdgeInsets.only(left: 50, right: 50, bottom: 20),
-                child: TextFieldSignIn(
+                child: TextFieldLogin(
                   labelText: 'Usuario',
                 ),
               ),
               const Padding(
                 padding: EdgeInsets.only(left: 50, right: 50, bottom: 20),
-                child: TextFieldSignIn(
+                child: TextFieldLogin(
                   labelText: 'Contraseña',
                 ),
               ),
@@ -76,7 +78,9 @@ class SignInPage extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed('/signup');
+                    },
                     child: const Text(
                       "Crear una aquí",
                       style: TextStyle(
@@ -92,43 +96,6 @@ class SignInPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class TextFieldSignIn extends StatelessWidget {
-  final String labelText;
-  const TextFieldSignIn({
-    required this.labelText,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(100.0),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(100.0),
-            borderSide: const BorderSide(
-              width: 2,
-              color: Colors.white,
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(100.0),
-            borderSide: const BorderSide(
-              width: 2,
-              color: Colors.white,
-            ),
-          ),
-          focusColor: Colors.white,
-          labelText: labelText,
-          labelStyle: const TextStyle(
-            color: Colors.white,
-          )),
     );
   }
 }
