@@ -10,15 +10,9 @@ class SplashController extends GetxController {
     Timer(
       const Duration(seconds: 3),
       () {
-        Get.toNamed('/home');
+        Get.toNamed('/signin');
       },
     );
     super.onInit();
-  }
-
-  void counterAdd() {
-    counter++;
-    update();
-    print('Hola mundo');
   }
 }
