@@ -1,3 +1,4 @@
+import 'package:artesanias_app/modules/account/signin/signin_bindings.dart';
 import 'package:artesanias_app/modules/account/signin/signin_page.dart';
 import 'package:artesanias_app/modules/account/signup/signup_page.dart';
 import 'package:artesanias_app/modules/home/home_page.dart';
@@ -20,6 +21,7 @@ abstract class AppRoutesList {
     GetPage(
       name: '/signin',
       page: () => const SignInPage(),
+      binding: SignInBinding(),
     ),
     GetPage(
       name: '/signup',
