@@ -44,7 +44,7 @@ class SignUpController extends GetxController {
           message:
               "Se ha creado correctamente el usuario: ${response.id}: ${response.lastName}",
         );
-        Get.offAllNamed('/signin');
+        Get.offNamed('/signin');
       }
     }
   }

@@ -7,6 +7,8 @@ class TextFieldLogin extends StatelessWidget {
   final Widget? suffixIcon;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final Color? borderColor;
+  final Color? textColor;
   const TextFieldLogin({
     required this.labelText,
     this.validator,
@@ -14,6 +16,8 @@ class TextFieldLogin extends StatelessWidget {
     this.suffixIcon,
     this.obscureText,
     this.keyboardType,
+    this.borderColor,
+    this.textColor,
     super.key,
   });
 
@@ -22,8 +26,8 @@ class TextFieldLogin extends StatelessWidget {
     return TextFormField(
       controller: controller,
       validator: validator,
-      style: const TextStyle(
-        color: Colors.white,
+      style: TextStyle(
+        color: borderColor ?? Colors.white,
       ),
       decoration: InputDecoration(
         border: OutlineInputBorder(
@@ -31,22 +35,22 @@ class TextFieldLogin extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
-          borderSide: const BorderSide(
+          borderSide: BorderSide(
             width: 2,
-            color: Colors.white,
+            color: borderColor ?? Colors.white,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
-          borderSide: const BorderSide(
+          borderSide: BorderSide(
             width: 2,
-            color: Colors.white,
+            color: borderColor ?? Colors.white,
           ),
         ),
-        focusColor: Colors.white,
+        focusColor: borderColor ?? Colors.white,
         labelText: labelText,
         labelStyle: TextStyle(
-          color: Colors.grey.shade300,
+          color: textColor ?? Colors.grey.shade300,
         ),
         suffixIcon: suffixIcon,
       ),

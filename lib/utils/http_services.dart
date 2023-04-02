@@ -1,3 +1,4 @@
+import 'package:artesanias_app/models/add_product_model.dart';
 import 'package:artesanias_app/models/login_model.dart';
 import 'package:artesanias_app/models/login_success_model.dart';
 import 'package:artesanias_app/models/signup_model.dart';
@@ -52,6 +53,27 @@ class HttpServices {
         hasError: true,
         errorText: "Ha ocurrido un error, verifica tus datos.",
         errorTitle: "Error al crear usuario",
+      );
+    }
+  }
+
+  Future<dynamic> addProduct({required AddProductModel data}) async {
+    LoaderArtesanal.showLoader();
+
+    try {
+      final response = await dio.post(
+        '$baseUrl/products/add',
+        data: data.toJson(),
+      );
+
+      LoaderArtesanal.closeLoader();
+
+      return AddProductModel.fromJson(response.data);
+    } catch (e) {
+      LoaderArtesanal.closeLoader(
+        hasError: true,
+        errorText: "Ha ocurrido un error, verifica tus datos.",
+        errorTitle: "Error al crear producto",
       );
     }
   }

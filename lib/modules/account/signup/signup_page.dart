@@ -155,7 +155,7 @@ class FormCreateUser extends StatelessWidget {
                   ),
                   MaterialButtonCustom(
                     onPressed: () {
-                      Get.back();
+                      Get.offNamed('/signin');
                     },
                     textButton: 'Regresar',
                     color: ColorsCustom.colorSecondary,

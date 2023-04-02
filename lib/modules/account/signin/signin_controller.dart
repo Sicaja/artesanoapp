@@ -1,5 +1,6 @@
 import 'package:artesanias_app/models/login_success_model.dart';
 import 'package:artesanias_app/utils/http_services.dart';
+import 'package:artesanias_app/utils/snackbar_custom.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,6 +34,13 @@ class SignInController extends GetxController {
       if (response != null) {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('token-auth', response.token ?? '');
+        await prefs.setString('name', response.firstName ?? '');
+        await prefs.setString('photo', response.image ?? '');
+        Get.offAllNamed('/home');
+        SnackBarCustom.showSnackBarMessage(
+          title: "Bienvenido",
+          message: "Que bueno verte de nuevo ${response.firstName}",
+        );
       }
     }
   }

@@ -98,7 +98,7 @@ class FormSignInWidget extends GetView<SignInController> {
               ),
               TextButton(
                 onPressed: () {
-                  Get.toNamed('/signup');
+                  Get.offAndToNamed('/signup');
                 },
                 child: const Text(
                   "Crear una aquí",

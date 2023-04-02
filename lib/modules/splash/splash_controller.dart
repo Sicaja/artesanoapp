@@ -18,7 +18,6 @@ class SplashController extends GetxController {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token-auth');
     if (token != null) {
-      prefs.remove('token-auth');
       Get.offAndToNamed('/home');
     } else {
       Get.offAndToNamed('/signin');
