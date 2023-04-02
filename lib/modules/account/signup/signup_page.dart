@@ -1,3 +1,4 @@
+import 'package:artesanias_app/modules/account/signup/signup_controller.dart';
 import 'package:artesanias_app/utils/colors_app.dart';
 import 'package:artesanias_app/widgets/material_button_custom.dart';
 import 'package:artesanias_app/widgets/material_input.dart';
@@ -22,8 +23,28 @@ class SignUpPage extends StatelessWidget {
             end: Alignment.topLeft,
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(50.0),
+        child: const Padding(
+          padding: EdgeInsets.all(50.0),
+          child: FormCreateUser(),
+        ),
+      ),
+    );
+  }
+}
+
+class FormCreateUser extends StatelessWidget {
+  const FormCreateUser({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<SignUpController>(
+      init: SignUpController(),
+      initState: (_) {},
+      builder: (controller) {
+        return Form(
+          key: controller.formKey,
           child: SafeArea(
             child: SingleChildScrollView(
               child: Column(
@@ -39,46 +60,58 @@ class SignUpPage extends StatelessWidget {
                   const SizedBox(
                     height: 40.0,
                   ),
-                  const TextFieldLogin(
+                  TextFieldLogin(
                     labelText: 'Usuario',
+                    controller: controller.userController,
+                    validator: controller.httpService.validationField,
                   ),
                   const SizedBox(
                     height: 20.0,
                   ),
                   TextFieldLogin(
                     labelText: 'Contraseña',
+                    controller: controller.pwdController,
+                    validator: controller.httpService.validationField,
                     keyboardType: TextInputType.text,
-                    obscureText: true,
+                    obscureText: !controller.showPassword,
                     suffixIcon: IconButton(
-                      icon: const Icon(
-                        Icons.visibility_off,
+                      icon: Icon(
+                        controller.showPassword
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        print("Wenas");
+                        controller.showPasswordValidation();
                       },
                     ),
                   ),
                   const SizedBox(
                     height: 20.0,
                   ),
-                  const TextFieldLogin(
+                  TextFieldLogin(
                     labelText: 'Nombre',
                     keyboardType: TextInputType.name,
+                    controller: controller.nameController,
+                    validator: controller.httpService.validationField,
                   ),
                   const SizedBox(
                     height: 20.0,
                   ),
-                  const TextFieldLogin(
+                  TextFieldLogin(
                     labelText: 'Apellido',
                     keyboardType: TextInputType.name,
+                    controller: controller.lastNameController,
+                    validator: controller.httpService.validationField,
                   ),
                   const SizedBox(
                     height: 20.0,
                   ),
-                  const TextFieldLogin(
+                  TextFieldLogin(
                     labelText: 'Correo electrónico',
                     keyboardType: TextInputType.emailAddress,
+                    controller: controller.emailController,
+                    validator: controller.httpService.validationField,
                   ),
                   const SizedBox(
                     height: 20.0,
@@ -87,28 +120,34 @@ class SignUpPage extends StatelessWidget {
                     height: 100,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: const [
+                      children: [
                         Flexible(
                           flex: 1,
                           child: TextFieldLogin(
                             labelText: 'Edad',
                             keyboardType: TextInputType.number,
+                            controller: controller.ageController,
+                            validator: controller.httpService.validationField,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                         Flexible(
                           flex: 1,
                           child: TextFieldLogin(
                             labelText: 'Género',
+                            controller: controller.generController,
+                            validator: controller.httpService.validationField,
                           ),
                         ),
                       ],
                     ),
                   ),
                   MaterialButtonCustom(
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.createUser();
+                    },
                     textButton: 'Crear usuario',
                   ),
                   const SizedBox(
@@ -125,8 +164,8 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
