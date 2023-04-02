@@ -9,12 +9,18 @@ class SignInController extends GetxController {
   final userController = TextEditingController();
   final pwdController = TextEditingController();
   final httpServices = HttpServices();
+  bool showPwd = false;
 
   @override
   void onClose() {
     userController.dispose();
     pwdController.dispose();
     super.onClose();
+  }
+
+  void setShowPassword() {
+    showPwd = !showPwd;
+    update();
   }
 
   void login() async {

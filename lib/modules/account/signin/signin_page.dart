@@ -61,14 +61,9 @@ class FormSignInWidget extends GetView<SignInController> {
               validator: controller.validationField,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 50, right: 50, bottom: 20),
-            child: TextFieldLogin(
-              controller: controller.pwdController,
-              labelText: 'Contraseña',
-              obscureText: true,
-              validator: controller.validationField,
-            ),
+          const Padding(
+            padding: EdgeInsets.only(left: 50, right: 50, bottom: 20),
+            child: FieldPassword(),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 50, right: 50, bottom: 50),
@@ -118,6 +113,37 @@ class FormSignInWidget extends GetView<SignInController> {
           )
         ],
       ),
+    );
+  }
+}
+
+class FieldPassword extends StatelessWidget {
+  const FieldPassword({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<SignInController>(
+      init: SignInController(),
+      initState: (_) {},
+      builder: (contro) {
+        return TextFieldLogin(
+          controller: contro.pwdController,
+          labelText: 'Contraseña',
+          obscureText: !contro.showPwd,
+          validator: contro.validationField,
+          suffixIcon: IconButton(
+            icon: Icon(
+              contro.showPwd ? Icons.visibility : Icons.visibility_off,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              contro.setShowPassword();
+            },
+          ),
+        );
+      },
     );
   }
 }
