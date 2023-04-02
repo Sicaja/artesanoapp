@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:artesanias_app/utils/snackbar_custom.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -8,6 +9,10 @@ import 'package:get/get.dart';
 
 abstract class LoaderArtesanal {
   static void showLoader() {
+    if (Get.isSnackbarOpen) {
+      Get.closeCurrentSnackbar();
+      Get.back();
+    }
     showCupertinoDialog(
       context: Get.context!,
       builder: (_) => WillPopScope(
@@ -37,7 +42,25 @@ abstract class LoaderArtesanal {
     );
   }
 
-  static closeLoader() {
-    Get.back();
+  static closeLoader({
+    bool hasError = false,
+    String? errorText,
+    String? errorTitle,
+  }) {
+    if (hasError) {
+      if (Get.isSnackbarOpen) {
+        Get.closeCurrentSnackbar();
+        Get.back();
+        Get.back();
+      } else {
+        Get.back();
+        SnackBarCustom.showSnackBarMessage(
+          title: errorTitle ?? '',
+          message: errorText ?? '',
+        );
+      }
+    } else {
+      Get.back();
+    }
   }
 }
