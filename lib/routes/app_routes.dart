@@ -3,6 +3,7 @@ import 'package:artesanias_app/modules/account/signin/signin_page.dart';
 import 'package:artesanias_app/modules/account/signup/signup_page.dart';
 import 'package:artesanias_app/modules/home/home_page.dart';
 import 'package:artesanias_app/modules/product/add_product/add_product_page.dart';
+import 'package:artesanias_app/modules/product/get_allproduct/get_allproduct_page.dart';
 import 'package:artesanias_app/modules/product/get_product/get_product_page.dart';
 import 'package:artesanias_app/modules/splash/splash_binding.dart';
 import 'package:artesanias_app/modules/splash/splash_page.dart';
@@ -37,5 +38,9 @@ abstract class AppRoutesList {
       name: '/getproduct',
       page: () => const GetProductPage(),
     ),
+    GetPage(
+      name: '/products',
+      page: () => const GetAllProductsPage(),
+    )
   ];
 }

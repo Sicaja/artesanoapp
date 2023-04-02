@@ -1,5 +1,6 @@
 import 'package:artesanias_app/modules/home/home_controller.dart';
 import 'package:artesanias_app/utils/colors_app.dart';
+import 'package:artesanias_app/widgets/material_button_custom.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -124,8 +125,16 @@ class MainScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: const [],
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: MaterialButtonCustom(
+              onPressed: () {
+                controller.getAllProducts();
+              },
+              textButton: 'Ver productos',
+            ),
+          ),
         ),
       ),
     );
